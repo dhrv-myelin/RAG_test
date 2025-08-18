@@ -1,0 +1,46 @@
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app # Mount your project into the container
+      - /app/.venv # Anonymous volume for venv
+      - uv-cache:/root/.cache/uv # Persist UV's cache
+    ports:
+      - "8888:8888"
+    command:
+      - uv
+      - run
+      - --with
+      - jupyter
+      - jupyter
+      - lab
+      - --ip=0.0.0.0
+      - --no-browser
+      - --allow-root
+      - --NotebookApp.token=''
+      - --NotebookApp.password=''
+
+    environment:
+      - PYTHONUNBUFFERED=1
+      - JUPYTER_ENABLE_LAB=yes
+
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    volumes:
+      - ollama-models:/root/.ollama   # Persist model data
+    ports:
+      - "8889:11434"                  # Ollama API port
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+volumes:
+  uv-cache:
+  ollama-models:
