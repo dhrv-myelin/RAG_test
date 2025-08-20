@@ -13,3 +13,5 @@ wheels/
 chroma_db/
 data/
 final_train/
+vector_stores/
+.Trash-0/
