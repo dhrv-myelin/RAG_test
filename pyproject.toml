@@ -11,6 +11,7 @@ dependencies = [
     "langchain>=0.3.27",
     "langchain-chroma>=0.2.5",
     "langchain-community>=0.3.27",
+    "langchain-experimental>=0.3.4",
     "langchain-huggingface>=0.3.1",
     "langchain-ollama>=0.3.6",
     "langchain-perplexity>=0.1.2",
@@ -22,4 +23,5 @@ dependencies = [
     "tiktoken>=0.11.0",
     "torch>=2.8.0",
     "transformers>=4.55.2",
+    "unstructured>=0.18.13",
 ]
